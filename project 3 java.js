@@ -43,3 +43,26 @@ var questions = [
     answer: "A",
   },
 ];
+// this is a get elementbyid helper
+function get(x) {
+    return document.getElementById(x);
+  }
+  
+  function startTimer() {
+    var countDownDate = moment(new Date()).add(10, "m").toDate();
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+  
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+      document.getElementById("timer").innerHTML =
+        "Time remaining: " + minutes + "m " + seconds + "s ";
+  
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  }
