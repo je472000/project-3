@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+      function saveScore() {
+        var initials = document.getElementById("initials").value;
+        var score = document.getElementById("rawScore").innerHTML;
+        alert(`${initials} ${score}`);
+      }
+    </script>
+  </head>
+  <body>
+    <section class="outerWrapper">
+      <div class="container">
+        <h2 id="test_status"></h2>
+        <div id="timer"></div>
+        <div id="test"></div>
+      </div>
+    </section>
+    <section id="save" class="save">
+      <div class="container saveContainer">
+        <div class="form-group">
+          <label for="initials">Your initials</label>
+          <input
+            type="text"
+            class="form-control"
+            id="initials"
+            aria-describedby="initials"
+            placeholder="Enter initials"
+          />
+        </div>
+        <button
+          id="saveScore"
+          onClick="saveScore()"
+          class="btn btn-secondary submitMe"
+        >
+          Save Score
+        </button>
+      </div>
+    </section>
+  </body>
