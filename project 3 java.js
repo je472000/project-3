@@ -66,3 +66,57 @@ function get(x) {
       }
     }, 1000);
   }
+  function renderQuestion() {
+    test = get("test");
+    // if all questions have been answered
+    if (pos >= questions.length) {
+      test.innerHTML =
+        "<h2 id='testScore'>You got " +
+        correct +
+        " of " +
+        questions.length +
+        " questions correct for a score of: " +
+        (correct / questions.length) * 100 +
+        "</h2><p style='display: none' id='rawScore'>" +
+        (correct / questions.length) * 100 +
+        "</p>";
+      get("test_status").innerHTML = "Test completed";
+  
+      pos = 0;
+      correct = 0;
+      var saveContainer = get("save");
+      saveContainer.classList.add("showMe");
+      return false;
+    }
+    get("test_status").innerHTML =
+      "Question " + (pos + 1) + " of " + questions.length;
+  
+    question = questions[pos].question;
+    chA = questions[pos].a;
+    chB = questions[pos].b;
+    chC = questions[pos].c;
+  
+    test.innerHTML = "<h3>" + question + "</h3>";
+    test.innerHTML +=
+      "<label> <input type='radio' name='choices' value='A'> " +
+      chA +
+      "</label><br>";
+    test.innerHTML +=
+      "<label> <input type='radio' name='choices' value='B'> " +
+      chB +
+      "</label><br>";
+    test.innerHTML +=
+      "<label> <input type='radio' name='choices' value='C'> " +
+      chC +
+      "</label><br><br>";
+    test.innerHTML +=
+      "<button class='btn btn-secondary submitMe' onclick='checkAnswer()'>Submit Answer</button>";
+  }
+  function checkAnswer() {
+    choices = document.getElementsByName("choices");
+    // get the answer chosen by user
+    for (var i = 0; i < choices.length; i++) {
+      if (choices[i].checked) {
+        choice = choices[i].value;
+      }
+    }
